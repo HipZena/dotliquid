@@ -183,7 +183,10 @@ namespace DotLiquid.Tags
                         buildContext(context, parent + "." + key, hashItem.Key, hashItem.Value);
                     }
                 }
-
+            }
+            else
+            {
+                context[parent] = new List<object>() { key, value };
             }
         }
     }

@@ -70,6 +70,18 @@ namespace DotLiquid.Tests.Tags
         }
 
         [Test]
+        public void TestIndexedAccessWithForWithDictionary()
+        {
+            var dictionary = new Dictionary<string, object>
+            {
+                { "Graham Greene", "English" },
+                { "F. Scott Fitzgerald", "American" }
+            };
+            Helper.AssertTemplateResult("Graham Greene,English;F. Scott Fitzgerald,American;", "{%for item in authors%}{{ item[0] }},{{ item[1] }};{%endfor%}",
+                Hash.FromAnonymousObject(new { authors = dictionary }));
+        }
+
+        [Test]
         public void TestForWithNestedDictionary()
         {
             var dictionary = new Dictionary<string, object> { {
